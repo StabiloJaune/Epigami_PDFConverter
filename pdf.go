@@ -45,7 +45,6 @@ func generatePDF(
 	}
 
 	pageWidth := 595.0
-
 	err = pdf.Image("assets/pictures/epigami.png", 510, 10, &gopdf.Rect{
 		W: 73,
 		H: 100,
@@ -66,11 +65,9 @@ func generatePDF(
 
 	epi := "Epitanime - Epigami"
 	epiWidth, _ := pdf.MeasureTextWidth(epi)
-
     	pdf.SetY(80)
     	pdf.SetX((pageWidth - epiWidth) / 2)
     	pdf.Text(epi)
-
 	err = pdf.SetFont("NotoSansJP", "", 28)
 	if err != nil {
 		log.Print(err.Error())
@@ -78,7 +75,6 @@ func generatePDF(
 	}
 
     	titleWidth, _ := pdf.MeasureTextWidth(title)
-
     	pdf.SetY(135)
 	pdf.SetX((pageWidth - titleWidth) / 2)
 	pdf.Text(title)
@@ -92,10 +88,8 @@ func generatePDF(
 
 	origX := 297.5
 	origY := 555.0
-
 	xDiff := 277.5
 	yDiff := 100.0
-
 	var actualImagePath = imagePath
 	var cleanup func()
 
@@ -112,7 +106,6 @@ func generatePDF(
 	}
 
 	imagePath = actualImagePath
-
 	w, h, e := getImageSize(imagePath)
 	if e != nil {
 		log.Print(err.Error())
@@ -145,13 +138,12 @@ func generatePDF(
 	}
 
     	timeWidth, _ := pdf.MeasureTextWidth(time)
-
     	pdf.SetY(720)
 	pdf.SetX((pageWidth - timeWidth) / 2 + 8)
 	pdf.Text(time)
-
 	difficulty := "Difficulté : "
 	i = 0
+
 	for ; i < difficultyLvl; i++ {
 		difficulty += "★"
 	}
@@ -164,10 +156,8 @@ func generatePDF(
     	pdf.SetY(770)
 	pdf.SetX((pageWidth - difficultyWidth) / 2 - 7)
 	pdf.Text(difficulty)
-
 	pdf.WritePdf(outPath)
 
 	return nil
-
 }
 
