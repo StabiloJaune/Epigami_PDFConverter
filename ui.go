@@ -7,7 +7,6 @@ import (
 	"fyne.io/fyne/v2/dialog"
 	"fyne.io/fyne/v2/storage"
 	"fyne.io/fyne/v2/widget"
-
 	"path/filepath"
 	"strings"
 )
@@ -16,33 +15,26 @@ func main() {
 	a := app.NewWithID("fr.epigami.model-manager")
 	w := a.NewWindow("PDF Generator")
 	w.Resize(fyne.NewSize(420, 420))
-
 	titleEntry := widget.NewEntry()
 	titleEntry.SetPlaceHolder("Title")
-
 	linkEntry := widget.NewEntry()
 	linkEntry.SetPlaceHolder("https://...")
-
 	imageLabel := widget.NewLabel("No image selected")
 	imageURLEntry := widget.NewEntry()
 	imageURLEntry.SetPlaceHolder("Or use URL")
 	var imagePath string
-
 	timeSlider := widget.NewSlider(1, 5)
 	timeSlider.Step = 1
 	timeSlider.Value = 1
-
 	diffSlider := widget.NewSlider(1, 5)
 	diffSlider.Step = 1
 	diffSlider.Value = 1
-
 	outLabel := widget.NewLabel("No output file")
 	var outPath string
 
 	imgFilter := storage.NewExtensionFileFilter([]string{
 		".png", ".jpg", ".jpeg", ".gif", ".bmp",
 	})
-
 
 	selectImage := widget.NewButton("Browse locally...", func() {
 		fd := dialog.NewFileOpen(func(r fyne.URIReadCloser, err error) {
