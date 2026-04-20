@@ -37,14 +37,14 @@ func downloadImage(imgURL string) (string, error) {
 		return "", err
 	}
 	defer resp.Body.Close()
-
 	tmpFile, err := os.CreateTemp("", "epigami-img-*"+filepath.Ext(imgURL))
+
 	if err != nil {
 		return "", err
 	}
 	defer tmpFile.Close()
-
 	_, err = io.Copy(tmpFile, resp.Body)
+
 	if err != nil {
 		return "", err
 	}
